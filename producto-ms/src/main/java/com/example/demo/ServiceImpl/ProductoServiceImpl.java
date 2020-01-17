@@ -1,8 +1,5 @@
 package com.example.demo.ServiceImpl;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.Service.ProductoService;
 import com.example.demo.entidad.Producto;
+import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repository.ProductoRepository;
 
 @Transactional(readOnly = true)
@@ -21,6 +19,9 @@ public class ProductoServiceImpl implements ProductoService {
 	@Autowired
 	private ProductoRepository productoRepository;
 	
+//	@Autowired
+	//private TipoProductoRepository tipoPoductoRepository;
+	
 	
 	@Override
 	public Iterable<Producto> obtenerProductos() {
@@ -29,17 +30,32 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	
-	
+	@Transactional(readOnly = true)
 	@Override
 	public Producto guardarProducto(Producto producto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+    /*
+		TipoProducto  tipoProducto= tipoPoductoRepository.finByCodigo(producto.getTipoProducto().getCodigo()).get();
+		producto.setTipoProducto(tipoProducto);
+		
+		//tipoProducto.setTipoProducto(tipoProducto);
+		productoRepository.save(producto);
+		
+		
+		
+	*/	
+		
+		Producto nuevo=productoRepository.save(producto);
+		return nuevo;
 	}
 
+	
 	@Override
-	public Producto obtnerProductoPorId(Long id) {
+	public Producto obtnerProductoPorId(Long id) throws ResourceNotFoundException {
 		
-		return null;
+
+		return productoRepository.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException(String.format("No se encontro el id %s en la BD", id)));
 	}
 	
 	

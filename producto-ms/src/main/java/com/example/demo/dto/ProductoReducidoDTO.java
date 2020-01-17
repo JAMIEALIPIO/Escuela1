@@ -30,7 +30,7 @@ public class ProductoReducidoDTO {
 	
 	@JsonProperty(value="ruta_imagen")
 	private String rutaImagen;
-	@JsonProperty(value="ruta_imagen")
+	@JsonProperty(value="ruta_Thumbnail")
 	private String rutaThumbnail;
 
 	

@@ -35,6 +35,9 @@ public class ProductoDTO {
 	private ImagenProductoDTO imagenProducto;
 	
 	private Boolean activo;
-	
+	@JsonProperty(value="cantidad_Stock")
+
+	private int cantidadStock;
 
 }
+
