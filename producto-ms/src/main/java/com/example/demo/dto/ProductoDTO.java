@@ -31,12 +31,11 @@ public class ProductoDTO {
 	private TipoProductoDTO tipoProducto;
 	
 	@JsonProperty(value="imagen_producto")
-	@OneToOne(cascade = CascadeType.ALL)
 	private ImagenProductoDTO imagenProducto;
 	
 	private Boolean activo;
+	
 	@JsonProperty(value="cantidad_Stock")
-
 	private int cantidadStock;
 
 }

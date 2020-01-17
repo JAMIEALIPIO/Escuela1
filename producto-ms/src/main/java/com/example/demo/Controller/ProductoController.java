@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.validation.Valid;
 import javax.validation.ValidationException;
 
 import org.modelmapper.ModelMapper;
@@ -34,8 +35,6 @@ public class ProductoController {
 	@Autowired
 	private DiscoveryClient client;
 	
-	@Value("${igv}")
-	public String igv;
 	
 	
 	@Autowired
@@ -72,18 +71,16 @@ public class ProductoController {
 		ProductoDTO producto=mapper.map(productoService.obtnerProductoPorId(id), ProductoDTO.class);
 		
 		producto.setCantidadStock(getCantidad("stock-ms", id).getCantidad());
-		
-		//producto.setCantidadStock(666);
-
 		return producto;
 		
 		
-		//return productoService.obtnerProductoPorId(id);
+		
 	}
 	
 	
 	@PostMapping("/productos")
-	public ProductoDTO guardarProducto(@RequestBody ProductoReducidoDTO productoReducidodto) throws ValidationException, ResourceNotFoundException{
+	public ProductoDTO guardarProducto(@Valid @RequestBody ProductoReducidoDTO productoReducidodto)
+			throws ValidationException, ResourceNotFoundException{
 		ModelMapper mapper=new ModelMapper();
 		Producto producto=mapper.map(productoReducidodto, Producto.class);
 		
@@ -96,16 +93,13 @@ public class ProductoController {
 		
 		producto.setTipoProducto(tipoProducto);
 		producto.setImagenProducto(imagenProducto);
+	
 		return mapper.map(productoService.guardarProducto(producto), ProductoDTO.class);
 		
 		
 	}
 	
 	
-	@GetMapping("/igv")
-	public String getIgv() {
-		return "el igv actual es " +igv;
-	}
 	
 	
 	

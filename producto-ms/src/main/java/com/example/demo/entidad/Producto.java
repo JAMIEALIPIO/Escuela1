@@ -2,6 +2,7 @@ package com.example.demo.entidad;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +42,7 @@ public class Producto {
 	@ManyToOne
 	private TipoProducto tipoProducto;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private ImagenProducto imagenProducto;
 	
 	@Column

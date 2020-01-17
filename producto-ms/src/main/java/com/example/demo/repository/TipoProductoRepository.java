@@ -11,6 +11,6 @@ import com.example.demo.util.CustomRepository;
 public interface TipoProductoRepository extends CustomRepository<TipoProducto, Long>{
 	
 	
-	//public Optional<TipoProducto> finByCodigo(Long codigo); 
+	public Optional<TipoProducto> findByCodigo(String codigo);
 
 }

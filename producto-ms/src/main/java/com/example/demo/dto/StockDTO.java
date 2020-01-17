@@ -18,10 +18,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class StockDTO {
-	
-	
-	
-	
+
 	private int cantidad;
 
 }

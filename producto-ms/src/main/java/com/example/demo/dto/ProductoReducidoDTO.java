@@ -2,8 +2,7 @@ package com.example.demo.dto;
 
 import java.math.BigDecimal;
 
-
-
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,11 +15,11 @@ import lombok.Setter;
 public class ProductoReducidoDTO {
 	
 	
-	
+	@NotBlank
 	private String nombre;
-	
+	@NotBlank
 	private String codigo;
-		
+	@NotBlank
 	private String descripcion;
 	
 	private BigDecimal precio;
@@ -30,7 +29,7 @@ public class ProductoReducidoDTO {
 	
 	@JsonProperty(value="ruta_imagen")
 	private String rutaImagen;
-	@JsonProperty(value="ruta_Thumbnail")
+	@JsonProperty(value="ruta_thumbnail")
 	private String rutaThumbnail;
 
 	
