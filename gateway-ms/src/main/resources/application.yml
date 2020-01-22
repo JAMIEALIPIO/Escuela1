@@ -1,0 +1,15 @@
+server:
+  port: 9901
+
+zuul:
+  prefix:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  
+  routes:
+    producto:
+      path: /empleado/**
+      service-id: empleado-ms
+    compania:
+      path: /empresa/**
+      service-id: empresa-ms
+   
