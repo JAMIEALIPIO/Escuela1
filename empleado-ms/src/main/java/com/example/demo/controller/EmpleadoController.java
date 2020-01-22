@@ -29,7 +29,7 @@ public class EmpleadoController {
 	public EmpleadoDTO obtenerEmpleadoPorId(@PathVariable("idEmpleado") Long id) throws ResourceNotFoundException{
 
 		ModelMapper mapper=new ModelMapper();
-		Empleado empleado=empleadoService.obtenerEmpleadoPorId(id);
+	/*	//Empleado empleado=empleadoService.obtenerEmpleadoPorId(id);
 
 	    EmpleadoDTO empleadodto=mapper.map(empleado, EmpleadoDTO.class);
 	    empleadodto.setEmpresa(feignService.obtenerEmpleadosEmpresa(id).getNombre());
@@ -37,6 +37,15 @@ public class EmpleadoController {
 	   
 		//return empleadoDTO;
 		return empleadodto;
+		
+		
+		*/
+		
+		EmpleadoDTO empleado=mapper.map(empleadoService.obtenerEmpleadoPorId(id),EmpleadoDTO.class );
+	
+	    EmpresaDTO empresaDTO=feignService.obtenerEmpleadosEmpresa(id);
+		empleado.setEmpresa(empresaDTO.getNombre());
+		return empleado;
 		
 
 }

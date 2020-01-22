@@ -27,7 +27,7 @@ public class FeignServiceImpl implements FeignService{
 	
 	public EmpresaDTO obtenerNombrePorDefecto(Long id) {
 		EmpresaDTO empresaDTO=new EmpresaDTO();
-		empresaDTO.setNombre(" ");
+		empresaDTO.setNombre("Empresa");
 		return empresaDTO;
 		
 	}
