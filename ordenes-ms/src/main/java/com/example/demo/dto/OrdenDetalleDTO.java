@@ -1,10 +1,9 @@
 package com.example.demo.dto;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,13 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrdenDTO {
+@AllArgsConstructor
+public class OrdenDetalleDTO {
 	@ApiModelProperty(value="")
 
 	private Long id;
-	private Date fecha;
-	private Long idCliente;
-	private Date fechaEnvio;
-	private BigDecimal total;
-	private List<OrdenDetalleDTO> detalle;
+	private Long idProducto;
+	private int cantidad;
+	private BigDecimal precio;
 }

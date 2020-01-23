@@ -1,5 +1,7 @@
 package com.example.demo.entidad;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class DetalleOrden {
+public class OrdenDetalle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +29,9 @@ public class DetalleOrden {
 	private Long idProducto;
 	
 	@Column
-	private Long idCantidad;
+	private Long Cantidad;
 	@Column
-	private Long idPrecio;
+	private BigDecimal Precio;
 	
 	@ManyToOne
 	private Orden orden;

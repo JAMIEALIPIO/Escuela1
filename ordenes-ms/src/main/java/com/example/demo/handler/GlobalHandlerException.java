@@ -10,7 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.example.demo.exceptions.ErrorDetails;
 import com.example.demo.exceptions.ResourceNotFoundException;
-import com.example.demo.exceptions.ValidarDni;
+import com.example.demo.exceptions.ValidacionException;
 
 @ControllerAdvice
 public class GlobalHandlerException {
@@ -23,8 +23,8 @@ public class GlobalHandlerException {
 	}
 	
 	
-	@ExceptionHandler(ValidarDni.class)
-	public ResponseEntity<?> validarDni(ValidarDni ex, WebRequest request){
+	@ExceptionHandler(ValidacionException.class)
+	public ResponseEntity<?> validarDni(ValidacionException ex, WebRequest request){
 		ErrorDetails errorDetails=new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.OK);
 	}

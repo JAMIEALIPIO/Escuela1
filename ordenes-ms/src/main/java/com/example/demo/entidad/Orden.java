@@ -1,5 +1,6 @@
 package com.example.demo.entidad;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -33,9 +33,9 @@ public class Orden {
 	@Column
 	private Date fechaEnvio;
 	@Column
-	private Long total;
+	private BigDecimal total;
 	
-	@OneToMany
-	private List<DetalleOrden> detalleOrden;
+	@OneToMany(mappedBy = "orden", cascade = CascadeType.ALL)
+	private List<OrdenDetalle> detalle;
 
 }

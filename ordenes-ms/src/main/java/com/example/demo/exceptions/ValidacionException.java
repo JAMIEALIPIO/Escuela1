@@ -1,14 +1,12 @@
 package com.example.demo.exceptions;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 
 @Getter
 @AllArgsConstructor
-public class ValidarDni  extends Exception{
+public class ValidacionException  extends Exception{
 	
 private static final long serialVersionUID=1L;
 	

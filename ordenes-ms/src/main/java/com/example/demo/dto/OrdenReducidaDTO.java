@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.FutureOrPresent;
 
@@ -8,18 +9,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@Setter
 @Getter
-public class OrdenReducidoDto {
-	
-    private Long idCliente;
-	private Date fecha;
-	
+@Setter
+@NoArgsConstructor
+public class OrdenReducidaDTO {
+	private Long idCliente;
 	@FutureOrPresent
 	private Date fechaEnvio;
-	private Long total;
-	
-	
-
+	private List<OrdenDetalleReducidoDTO> detalle;
 }
