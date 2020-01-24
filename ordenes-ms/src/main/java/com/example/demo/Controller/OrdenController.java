@@ -14,11 +14,17 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -115,9 +121,7 @@ public class OrdenController {
 			//	int cantidad = getCantidad("almacen-ms", ordenDetalle.getIdProducto()).getCantidad();
 				
 			  int cantidad =almacenClient.obtenerCantidad(ordenDetalle.getIdProducto()).getCantidad();
-			   
-				
-			
+
 				    if (cantidad < ordenDetalle.getCantidad()) 
 				      {
 					      throw new ValidacionException("Cantidad sobrepasa el stock actual");
@@ -149,14 +153,66 @@ public class OrdenController {
 	
 	
 	@GetMapping("/ordenes/listado/{fecha}")
-	public List<OrdenDTO> listadoOrdenes(@PathVariable("fecha") Date fecha) throws ResourceNotFoundException{
+	public List<OrdenDTO> listadoOrdenes(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha) throws ResourceNotFoundException{
 		
 		ModelMapper modelMapper = new ModelMapper();
-		Type listType = new TypeToken<List<String>>() {}.getType();
+		Type listType = new TypeToken<List<OrdenDTO>>() {}.getType();
 		return modelMapper.map(ordenService.listarOrdenesFecha(fecha), listType);
 		
 		
 	}
+	
+	@GetMapping("/orden/detalle/{idProducto}")
+	public List<OrdenDTO>detalleProductos(@PathVariable("idProducto") Long idProducto) throws ResourceNotFoundException{
+		
+		ModelMapper modelMapper=new ModelMapper();
+		Type listType = new TypeToken<List<OrdenDTO>>() {}.getType();
+		
+		return modelMapper.map(ordenService.obtenerDetallesProducto(idProducto), listType);
+		
+	}
+	
+	
+	@RequestMapping(value="/orden/{idOrden}", method=RequestMethod.GET)
+	public Orden eliminarOrdenes(@PathVariable("idOrden") Long idOrden){
+	
+		return ordenService.eliminarRegistroOrdenes(idOrden);
+	  
+	}
+	
+	
+	@PutMapping("/orden/{idOrden}")
+	public OrdenDTO actualizarOrdenFecha(@PathVariable ("idOrden") Long idOrden,
+			@RequestBody OrdenReducidaDTO ordenReducidadto) throws ResourceNotFoundException {
+			
+		    ModelMapper modelMapper=new ModelMapper();
+		 
+			Orden orden=ordenService.actualizarFechaOrden(idOrden, ordenReducidadto);
+			OrdenDTO ordendto=modelMapper.map(orden, OrdenDTO.class);
+			
+		return ordendto;	
+		
+	}
+	
+	
+/*	@DeleteMapping
+	public Orden eliminar(@PathVariable("idOrden") Long idOrden) {
+		
+		
+		
+		
+		return null;
+		
+	}
+	
+	*/
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -3,7 +3,7 @@ spring:
     name: ordenes-ms
   cloud:
     config:
-      uri: http://localhost:8081
+      uri: http://user:a3c52a35-5ef3-4422-a1e9-50db60e4491a@localhost:8081
             
 server:
    port: ${PORT:${SERVER_PORT:0}}
