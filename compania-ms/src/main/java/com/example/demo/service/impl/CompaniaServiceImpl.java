@@ -1,5 +1,9 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +66,24 @@ public class CompaniaServiceImpl implements CompaniaService {
 		compania.setRazonSocial(companiaReducidadto.getRazonSocial());
 		
 		return companiaRepository.save(compania);
+	}
+
+
+	@Override
+	public Compania obtenerCompaniaPorId(Long id) throws ResourceNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+	
+     @Override
+	public List<Compania> obtenerCompania() {
+
+		return StreamSupport.stream(companiaRepository.findAll().spliterator(), false).collect(Collectors.toList());
+		
+		
 	}
 
 }

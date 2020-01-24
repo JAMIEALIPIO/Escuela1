@@ -1,7 +1,5 @@
 package com.example.demo.exceptions;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

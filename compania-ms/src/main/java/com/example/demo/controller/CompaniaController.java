@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -17,7 +16,6 @@ import com.example.demo.dto.CompaniaDTO;
 import com.example.demo.dto.CompaniaReducidaDTO;
 import com.example.demo.entidad.Compania;
 import com.example.demo.exceptions.ResourceNotFoundException;
-//import com.example.demo.respository.
 import com.example.demo.service.CompaniaService;
 
 @RestController
@@ -44,7 +42,6 @@ public class CompaniaController {
 	    CompaniaDTO response=modelMapper.map(compania, CompaniaDTO.class);
 	 
 		return response;
-	
 	}
 	
 	
@@ -52,18 +49,27 @@ public class CompaniaController {
 	public CompaniaDTO actualizarCompania(@PathVariable ("idCompania") Long idCompania,
 			@RequestBody CompaniaReducidaDTO companiaReducidadto) throws ResourceNotFoundException {
 			
-		 ModelMapper modelMapper=new ModelMapper();
+		    ModelMapper modelMapper=new ModelMapper();
 		 
-		Compania compania=companiaService.actualizarCompania(idCompania, companiaReducidadto);
-		CompaniaDTO companiadto=modelMapper.map(compania, CompaniaDTO.class);
-		
-
+			Compania compania=companiaService.actualizarCompania(idCompania, companiaReducidadto);
+			CompaniaDTO companiadto=modelMapper.map(compania, CompaniaDTO.class);
+			
 		return companiadto;	
-		
-		
 		
 	}
 	
+	
+	@GetMapping("/companias/{id}")
+	public Compania obtenerCompaniaPorId(@PathVariable("id") Long id) throws ResourceNotFoundException {
+		return companiaService.obtenerCompaniaPorId(id);
+	}
+	
+	
+	
+/*	@RequestMapping("/companias")
+	public List<Persona> getPersonas(){
+	return companiaService.obtenerPersona();	
+	}*/
 	  }
 		
 	

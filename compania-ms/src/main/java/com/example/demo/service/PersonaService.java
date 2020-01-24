@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.dto.CompaniaDTO;
 import com.example.demo.entidad.Persona;
 import com.example.demo.exceptions.ResourceNotFoundException;
 
