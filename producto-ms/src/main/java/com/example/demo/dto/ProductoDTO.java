@@ -2,9 +2,6 @@ package com.example.demo.dto;
 
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
